@@ -1,0 +1,8 @@
+ kubectl apply -f ./manifest/namespace.yaml
+ kubectl apply -f ./manifest/rbac.yaml
+ kubectl apply -f ./manifest/deployment.yaml
+ kubectl port-forward -n kubedoom --address localhost,192.168.0.17 deployments/kubedoom 5900:5900
+
+ VNC password is idbehold
+
+
