@@ -4,5 +4,5 @@ type: Opaque
 metadata:
     name: postgres-credentials
 data:
-    user: dGVzdHVzZXIK
-    password: dGVzdHBhc3N3b3JkCg==
+    ps_user: dGVzdHVzZXIK
+    ps_password: dGVzdHBhc3N3b3JkCg==

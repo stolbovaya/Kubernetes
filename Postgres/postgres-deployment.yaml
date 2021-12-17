@@ -25,12 +25,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: postgres-credentials
-              key: user
+              key: ps_user
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
               name: postgres-credentials
-              key: password
+              key: ps_password
         ports:
         - containerPort: 5432
           name: postgres
