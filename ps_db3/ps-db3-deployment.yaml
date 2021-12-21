@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ps-db3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ps-db3
+  template:
+    metadata:
+      labels:
+        app: ps-db3
+    spec:
+      containers:
+      - name: ps-db3
+        image: postgres:10.13
+        env:
+        - name: POSTGRES_DB
+          value: testdatabase
+        - name: PGDATA
+          value: "/var/lib/postgresql/data/pgdata"
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: ps-db3-creds
+              key: psuser
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ps-db3-creds
+              key: pspassword
+        ports:
+        - containerPort: 5432
+          name: ps-db3
+        volumeMounts:
+          # mountPath within the container
+        - name: ps-db3-pvc
+          mountPath: "/var/lib/postgresql/data"
+      volumes:
+        - name: ps-db3-pvc
+          persistentVolumeClaim:
+            claimName: ps-db3-pvc
