@@ -15,7 +15,6 @@ spec:
       containers:
       - name: postgres
         image: postgres:10.13
-        imagePullPolicy: "IfNotPresent"
         env:
         - name: POSTGRES_DB
           value: testdatabase
@@ -24,13 +23,13 @@ spec:
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
-              name: postgres-credentials
-              key: ps_user
+              name: postgres-creds
+              key: psuser
         - name: POSTGRES_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: postgres-credentials
-              key: ps_password
+              name: postgres-creds
+              key: pspassword
         ports:
         - containerPort: 5432
           name: postgres
